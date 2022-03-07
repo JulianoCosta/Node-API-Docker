@@ -1,0 +1,27 @@
+version: '3.8'
+volumes:
+   data:
+networks:
+   main:
+services:
+   api:
+      image: node:16.14
+      volumes:
+         - ./app:/app
+      working_dir: /app
+      command: bash -c "npm i && npm start"
+      networks:
+         - main
+      ports:
+         - 3000:3000
+      depends_on:
+         - db
+   db:
+      image: postgres:14.1
+      volumes:
+         - data:/var/lib/postgresql/data
+      restart: always
+      networks:
+         - main
+      env_file:
+         - ./app/docker.env
