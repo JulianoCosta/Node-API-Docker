@@ -7,12 +7,12 @@ const { env } = process
 app.db = db
 
 consign
-	.then('./config/passport.js')
-	.then('./config/middlewares.js')
-	.then('./api')
-	.then('./config/routes.js')
-	.into(app)
+   .then('./config/passport.js')
+   .then('./config/middlewares.js')
+   .then('./api')
+   .then('./config/routes.js')
+   .into(app)
 
 app.listen(env.API_PORT, () => {
-	console.log(`API Online  -  ${env.API_PORT}`)
+   console.log(`API Online  -  ${env.API_PORT}`)
 })
