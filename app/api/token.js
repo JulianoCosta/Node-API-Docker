@@ -13,12 +13,12 @@ module.exports = app => {
          existsOrError(email, COD.MISSING_INFO('Email', COD.M))
          existsOrError(password, COD.MISSING_INFO('Senha', COD.F))
       } catch (err) {
-         return res.status(500).send(err)
+         return res.status(400).send(err)
       }
 
       let user = await app.db('users').where({ email }).first()
       if (!user || !bcrypt.compareSync(password, user.password)) {
-         return res.json(COD.INCORRECT_LOGIN())
+         return res.status(400).json(COD.INCORRECT_LOGIN())
       }
 
       const issuedAt = parseInt(Date.now() / 1000)
@@ -37,7 +37,7 @@ module.exports = app => {
          const payload = jwt.decode(token, env.AUTH_SECRET)
          return res.json(noPass(payload))
       } catch (err) {
-         return res.json(COD.INVALID_TOKEN())
+         return res.status(400).json(COD.INVALID_TOKEN())
       }
    }
 

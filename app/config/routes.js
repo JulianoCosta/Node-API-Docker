@@ -1,5 +1,3 @@
-const admin = require('../config/admin')
-
 module.exports = app => {
    app.route('/register').post(app.api.users.post)
    app.route('/login').post(app.api.token.create)
@@ -8,7 +6,7 @@ module.exports = app => {
    app.route('/user')
       .all(app.config.passport.authenticate())
       .get(app.api.users.get)
-      .post(admin(app.api.users.post))
+      .post(app.api.users.post)
       .delete(app.api.users.remove)
 
    app.route('/user/:id')
