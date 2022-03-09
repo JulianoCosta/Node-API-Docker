@@ -22,45 +22,52 @@ const COD = () => {
       console.log(text)
    }
    const MISSING_INFO = (name, gender) => {
+      let { name: n, gender: g } = filter(name, gender)
       return {
          ...CODES.MISSING_INFO,
-         msg: `${PREFIX}${name} não informad${gender}`
+         msg: `${PREFIX}${n} não informad${g}`
       }
    }
    const DIFFERENT_INFO = name => {
+      let { name: n, gender: g } = filter(name)
       return {
          ...CODES.DIFFERENT_INFO,
-         msg: `${PREFIX}${name} não conferem`
+         msg: `${PREFIX}${n} não conferem`
       }
    }
    const INVALID_INFO = (name, gender) => {
+      let { name: n, gender: g } = filter(name, gender)
       return {
          ...CODES.INVALID_INFO,
-         msg: `${PREFIX}${name} inválid${gender}`
+         msg: `${PREFIX}${n} inválid${g}`
       }
    }
    const UNREGISTERED = (name, gender) => {
+      let { name: n, gender: g } = filter(name, gender)
       return {
          ...CODES.UNREGISTERED,
-         msg: `${PREFIX}${name} não foi cadastrad${gender}`
+         msg: `${PREFIX}${n} não foi cadastrad${g}`
       }
    }
    const NOT_UPDATED = (name, gender) => {
+      let { name: n, gender: g } = filter(name, gender)
       return {
          ...CODES.NOT_UPDATED,
-         msg: `${PREFIX}${name} não foi atualizad${gender}`
+         msg: `${PREFIX}${n} não foi atualizad${g}`
       }
    }
    const ALREADY_REGISTERED = name => {
+      let { name: n, gender: g } = filter(name)
       return {
          ...CODES.ALREADY_REGISTERED,
-         msg: `${PREFIX}${name} já está cadastrado`
+         msg: `${PREFIX}${n} já está cadastrado`
       }
    }
    const REGISTRY_NOT_EXIST = name => {
+      let { name: n, gender: g } = filter(name)
       return {
          ...CODES.REGISTRY_NOT_EXIST,
-         msg: `${PREFIX}Cadastro de ${name} não existe`
+         msg: `${PREFIX}Cadastro de ${n} não existe`
       }
    }
    const INCORRECT_LOGIN = () => {
@@ -74,6 +81,12 @@ const COD = () => {
          ...CODES.INVALID_TOKEN,
          msg: `${PREFIX}Token Inválido`
       }
+   }
+
+   const filter = (name, gender) => {
+      name = !!name && typeof name === 'string' ? name : 'Registro'
+      gender = !!gender && (gender === M || gender === F) ? gender : 'o'
+      return { name, gender }
    }
 
    return {

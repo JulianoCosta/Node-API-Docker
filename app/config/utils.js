@@ -14,10 +14,12 @@ const first = v => {
 const getDate = string => {
    try {
       let [day, month, year] = string.split('/')
-      return new Date(`${month} ${day} ${year}`)
-   } catch (err) {
-      return null
-   }
+      let date = new Date(`${month} ${day} ${year}`)
+      if (date.getDate()) {
+         return date
+      }
+   } catch (err) {}
+   return null
 }
 
 const isLogged = req => {
@@ -25,15 +27,18 @@ const isLogged = req => {
 }
 
 const isAdmin = req => {
-   return req.user && req.user.admin
+   return !!(req.user && req.user.admin)
 }
 
 const noPass = obj => {
    if (Array.isArray(obj)) {
       return obj.map(noPass)
    }
-   let { password, ...rest } = obj
-   return rest
+   if (typeof obj === 'object' && !!obj) {
+      let { password, ...rest } = obj
+      return rest
+   }
+   return obj
 }
 
 module.exports = { encryptPass, first, getDate, isLogged, isAdmin, noPass }

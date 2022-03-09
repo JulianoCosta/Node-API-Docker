@@ -5,6 +5,7 @@
    "main": "index.js",
    "scripts": {
       "start": "node index.js",
+      "test": "jest --verbose",
       "dev": "nodemon"
    },
    "keywords": [],
@@ -24,6 +25,7 @@
       "pg": "~8.7.3"
    },
    "devDependencies": {
+      "jest": "~27.5.1",
       "nodemon": "~2.0.15"
    },
    "engines": {
