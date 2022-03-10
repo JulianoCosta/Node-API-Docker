@@ -29,11 +29,11 @@ Create and execute all **containers**
 `$ docker-compose up`
 
 Run **tests**
-`$ cd app`
 
+`$ cd app`
 `$ npm test`
 
 Run **api**
-`$ cd app`
 
+`$ cd app`
 `$ npm start`
