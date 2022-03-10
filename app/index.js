@@ -19,6 +19,6 @@ if (require.main === module) {
       console.log(`API Online  -  ${env.API_PORT}`)
    })
 } else {
-   // For tests with supertest and Jest, and stop server
+   // For tests with supertest and Jest
    module.exports = app
 }
