@@ -26,6 +26,7 @@ Simple Restful Api with Node.js
 ------------
 ### Commands
 Create and execute all **containers**
+
 `$ docker-compose up`
 
 Run **tests**
