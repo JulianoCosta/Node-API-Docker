@@ -1,15 +1,15 @@
-#### Node-API-Docker
+### Node-API-Docker
 
 Simple Restful Api with Node.js
 
 ------------
-#### Diagram
+### Diagram
 
 ![diagram](https://user-images.githubusercontent.com/12651865/157768699-5c12a4d7-c552-4b9b-b8fd-8795f38cf9f5.jpg)
 
 ------------
 
-#### Technologies
+### Technologies
 + Node.js
    + Express.js
    + Knex.js
@@ -24,7 +24,7 @@ Simple Restful Api with Node.js
 + Nginx
 
 ------------
-#### Commands
+### Commands
 Create and execute all **containers**
 `$ docker-compose up`
 
