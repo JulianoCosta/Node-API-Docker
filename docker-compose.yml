@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 volumes:
    data:
 networks:
@@ -13,9 +13,9 @@ services:
       networks:
          - main
       ports:
-         - 3000:3000
-      env_file:
-         - ./docker.env
+         - '${API_PORT}:${API_PORT}'
+      environment:
+         DB_HOST: '${DB_HOST}'
       depends_on:
          - db
    db:
@@ -25,5 +25,7 @@ services:
       restart: always
       networks:
          - main
-      env_file:
-         - ./docker.env
+      environment:
+         POSTGRES_DB: '${POSTGRES_DB}'
+         POSTGRES_USER: '${POSTGRES_USER}'
+         POSTGRES_PASSWORD: '${POSTGRES_PASSWORD}'
