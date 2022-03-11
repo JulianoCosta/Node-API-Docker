@@ -1,7 +1,7 @@
 const TABLE = 'pet'
 const { existsOrError, notExists } = require('../config/validators')
 const COD = require('../config/jsonCod')
-const { getDate, isAdmin, noPass } = require('../config/utils')
+const { getDate, isAdmin, noPass, first } = require('../config/utils')
 
 module.exports = app => {
    const get = async (req, res) => {
@@ -39,7 +39,7 @@ module.exports = app => {
       birthDate = getDate(birthDate)
 
       app.db(TABLE)
-         .insert({ name, birthDate, userId }, ['name', 'birthDate'])
+         .insert({ name, birthDate, userId }, ['id', 'name', 'birthDate'])
          .then(pet => res.json({ ...pet[0], user: noPass(user) }))
          .catch(err => res.status(500).send(err))
    }
@@ -50,7 +50,7 @@ module.exports = app => {
       const { id } = req.params
 
       if (notExists(id)) {
-         return res.json(COD.MISSING_INFO('Id', COD.M))
+         return res.status(400).json(COD.MISSING_INFO('Id', COD.M))
       }
 
       let pet
@@ -60,7 +60,7 @@ module.exports = app => {
          return res.status(500).send(err)
       }
       if (!pet) {
-         return res.json(COD.REGISTRY_NOT_EXIST('Pet'))
+         return res.status(400).json(COD.REGISTRY_NOT_EXIST('Pet'))
       }
       if (!isAdmin(req) && req.user.id != pet.userId) {
          return res.sendStatus(401)
@@ -68,8 +68,8 @@ module.exports = app => {
 
       app.db(TABLE)
          .where({ id })
-         .del()
-         .then(pet => res.json(pet))
+         .del(['id', 'name', 'birthDate'])
+         .then(pet => res.json(first(pet)))
          .catch(err => res.status(500).send(err))
    }
 

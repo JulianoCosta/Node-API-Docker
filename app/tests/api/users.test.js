@@ -3,7 +3,7 @@ const request = require('supertest')
 const COD = require('../../config/jsonCod')
 const { encryptPass } = require('../../config/utils')
 
-const emailPrefix = 'test_000'
+const emailPrefix = 'test_user_000'
 const user = n => {
    return {
       name: 'Teste',
