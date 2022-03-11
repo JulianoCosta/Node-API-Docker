@@ -45,14 +45,14 @@ Simple Restful Api with Node.js
 
    -  Initialize the containers:
 
-   `$ docker-compose up -d` (root folder, -d run in background)
+      `$ docker-compose up -d` (root folder, -d run in background)
 
    -  Initialize the load test:
 
-   `$ cd load_test`
+      `$ cd load_test`
 
-   `$ npm start`
+      `$ npm start`
 
    -  And in another terminal, launch real-time monitoring:
 
-   `$ docker stats`
+      `$ docker stats`
