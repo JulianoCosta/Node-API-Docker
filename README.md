@@ -21,7 +21,19 @@ Simple Restful Api with Node.js
 
 ![diagram](https://user-images.githubusercontent.com/12651865/157768699-5c12a4d7-c552-4b9b-b8fd-8795f38cf9f5.jpg)
 
+### Requirements
+
+Applications that need to be installed in the development environment:
+
+-  node
+-  npm
+-  docker
+
 ### Commands
+
+-  Install dependencies on "/app" and "/load_test":
+
+   `$ npm i`
 
 -  Create and **execute all containers** on port **80** (nginx), on root folder:
 
